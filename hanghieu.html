@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đám cưới Hằng & Hiếu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            background: #f8f5f0;
+        }
+
+        h1, h2, h3, .hero-content, .section-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .person h3, .event-item h3 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?w=1200') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+
+        .hero .ampersand {
+            font-size: 3em;
+            font-style: italic;
+            margin: 0 20px;
+            opacity: 0.9;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+        }
+
+        .hero .date {
+            font-size: 1.5em;
+            letter-spacing: 5px;
+            margin-top: 30px;
+            font-weight: 300;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 50px;
+            color: #8b7355;
+            position: relative;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '♥';
+            display: block;
+            margin: 20px auto;
+            font-size: 0.6em;
+            color: #d4a574;
+        }
+
+        .story {
+            background: white;
+            text-align: center;
+            padding: 80px 40px;
+        }
+
+        .story p {
+            font-size: 1.2em;
+            line-height: 2;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-style: italic;
+        }
+
+        .couple-info {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 80px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .person {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            flex: 0 0 auto;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .person:hover {
+            transform: translateY(-10px);
+        }
+
+        .person-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #d4a574, #8b7355);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .person-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .person h3 {
+            font-size: 2em;
+            color: #8b7355;
+            margin-bottom: 10px;
+        }
+
+        .person .role {
+            color: #d4a574;
+            font-size: 1.1em;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .gift-btn {
+            background: linear-gradient(135deg, #d4a574, #8b7355);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.4);
+            margin-top: auto;
+        }
+
+        .gift-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(212, 165, 116, 0.6);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            position: relative;
+            animation: fadeInUp 0.5s;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -2px;
+            right: 10px;
+            font-size: 2em;
+            cursor: pointer;
+            color: #8b7355;
+            transition: transform 0.3s;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.2);
+        }
+
+        .qr-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f5f0;
+            border-radius: 10px;
+        }
+
+        .qr-container img {
+            width: 250px;
+            height: 250px;
+            margin: 10px auto;
+        }
+
+        .bank-info {
+            text-align: left;
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f5f0;
+            border-radius: 10px;
+            line-height: 1.8;
+        }
+
+        .bank-info strong {
+            color: #8b7355;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 3em;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+            z-index: 3001;
+        }
+
+        .lightbox-close:hover {
+            transform: scale(1.2);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3em;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .lightbox-nav:hover {
+            transform: translateY(-50%) scale(1.2);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .countdown {
+            background: linear-gradient(135deg, #8b7355, #d4a574);
+            color: white;
+            text-align: center;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .countdown-item {
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 10px;
+            min-width: 120px;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-item .number {
+            font-size: 3em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-item .label {
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        .events {
+            background: #fff;
+        }
+
+        .event-list {
+            display: grid;
+            gap: 40px;
+        }
+
+        .event-item {
+            background: linear-gradient(to right, #f8f5f0, white);
+            padding: 40px;
+            border-left: 5px solid #d4a574;
+            border-radius: 5px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .event-item h3 {
+            color: #8b7355;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .event-item p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        .event-item .time {
+            color: #d4a574;
+            font-weight: bold;
+        }
+
+        .gallery {
+            background: #f8f5f0;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .rsvp {
+            background: linear-gradient(135deg, #f8f5f0, #fff);
+            padding: 80px 20px;
+        }
+
+        .rsvp-form {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #8b7355;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0d5c7;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #d4a574;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #d4a574, #8b7355);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.2em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.4);
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 165, 116, 0.6);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .thank-you-note {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .thank-you-note p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #666;
+            margin: 15px 0;
+        }
+
+        .thank-you-note .highlight {
+            color: #8b7355;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .success-message {
+            background: #d4f4dd;
+            color: #2d6a3e;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .footer {
+            background: #8b7355;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .footer p {
+            font-size: 1.2em;
+            line-height: 1.8;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #d4a574;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+        }
+
+        .music-control::before {
+            content: '♪';
+            font-size: 1.8em;
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .music-control.playing {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .music-control.paused::before {
+            content: '♪';
+            animation: none;
+        }
+
+        .music-control.paused::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            width: 45px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            z-index: 2;
+        }
+
+        .rsvp-float-btn {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #8b7355, #d4a574);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(139, 115, 85, 0.4);
+            z-index: 1001;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rsvp-float-btn:hover {
+            transform: translateY(-8px) scale(1.15);
+            box-shadow: 0 12px 35px rgba(139, 115, 85, 0.7);
+        }
+
+        .rsvp-float-btn::before {
+            content: '✉';
+            font-size: 1.8em;
+            color: white;
+            animation: iconPulse 4s ease-in-out infinite;
+        }
+
+        .rsvp-text {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            background: linear-gradient(135deg, #8b7355, #d4a574);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            white-space: nowrap;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            font-size: 0.95em;
+            box-shadow: 0 5px 15px rgba(139, 115, 85, 0.5);
+            transition: opacity 0.3s, visibility 0.3s;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .rsvp-text::before {
+            content: 'Xác nhận tham dự';
+        }
+
+        .rsvp-text::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 20px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #d4a574;
+        }
+
+        .rsvp-float-btn.hide-text .rsvp-text {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 20px rgba(139, 115, 85, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 8px 30px rgba(139, 115, 85, 0.6);
+            }
+        }
+
+        @keyframes iconPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            8% {
+                transform: scale(1.2) rotate(-5deg);
+            }
+            12% {
+                transform: scale(1.15) rotate(3deg);
+            }
+            16% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { 
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to { 
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero .ampersand {
+                font-size: 2em;
+                margin: 0 10px;
+                display: block;
+            }
+            
+            .section-title {
+                font-size: 2em;
+            }
+
+            .couple-info {
+                gap: 20px;
+                flex-direction: row;
+                justify-content: center;
+            }
+
+            .person {
+                max-width: 45%;
+                flex: 0 0 45%;
+                padding: 20px 15px;
+            }
+
+            .person-img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .person h3 {
+                font-size: 1.3em;
+            }
+
+            .person .role {
+                font-size: 1em;
+            }
+
+            .gift-btn {
+                padding: 12px 25px;
+                font-size: 0.95em;
+            }
+
+            .modal-content {
+                margin: 20px;
+                padding: 30px 20px;
+                max-width: 90%;
+            }
+
+            .qr-container img {
+                width: 200px;
+                height: 200px;
+            }
+
+            .lightbox-nav {
+                font-size: 2em;
+                padding: 10px;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 15px;
+                font-size: 2em;
+            }
+
+            .rsvp-float-btn {
+                bottom: 80px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .rsvp-float-btn::before {
+                font-size: 1.5em;
+            }
+
+            .rsvp-text {
+                top: -40px;
+                font-size: 0.85em;
+                padding: 8px 16px;
+            }
+
+            .rsvp-text::before {
+                content: 'Tham dự';
+            }
+
+            .music-control {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .music-control::before {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8em;
+            }
+
+            .couple-info {
+                gap: 13px;
+            }
+
+            .person {
+                max-width: 48%;
+                flex: 0 0 48%;
+                padding: 15px 10px;
+            }
+
+            .person-img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .person h3 {
+                font-size: 1.1em;
+            }
+
+            .person .role {
+                font-size: 0.9em;
+            }
+
+            .gift-btn {
+                padding: 10px 20px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>
+                Nguyễn Thị Hằng
+                <span class="ampersand">&</span>
+                Nguyễn Mậu Hiếu
+            </h1>
+            <div class="date">01 - 12 - 2025</div>
+        </div>
+    </div>
+
+    <section class="story">
+        <h2 class="section-title">Câu chuyện tình yêu</h2>
+        <p>Gặp gỡ, yêu và cưới. Điều bạn vừa nghe không nằm trong một câu chuyện cổ tích, mà chính là câu chuyện về cuộc đời hai chúng tôi.</p>
+        <p>Chúng tôi sẽ yêu thương, chăm sóc, trân trọng và nắm tay nhau cùng đi đến hết cuộc đời này.</p>
+        <p>Thật là một niềm vinh hạnh lớn khi ngày hạnh phúc nhất cuộc đời chúng tôi có sự hiện diện và chúc phúc của bạn!</p>
+        <p style="color: #d4a574; font-size: 1.3em;">Chân thành cảm ơn bạn ♥ ♥</p>
+    </section>
+
+    <section>
+        <h2 class="section-title">Cô dâu & Chú rể</h2>
+        <div class="couple-info">
+            <div class="person">
+                <div class="person-img">
+                    <img src="Images/codau.jpg" alt="Cô dâu Nguyễn Thị Hằng">
+                </div>
+                <p class="role">Cô dâu</p>
+                <h3>Nguyễn Thị Hằng</h3>
+                <p class="role">Con ông: Nguyễn Sỹ Văn</p>
+                <p class="role">Con bà: Lê Thị Hà</p>
+                <button class="gift-btn" onclick="openModal('bride')">💝 Mừng cưới</button>
+            </div>
+            <div class="person">
+                <div class="person-img">
+                    <img src="Images/chure.jpg" alt="Chú rể Nguyễn Mậu Hiếu">
+                </div>
+                <p class="role">Chú rể</p>
+                <h3>Nguyễn Mậu Hiếu</h3>
+                <p class="role">Con ông: Nguyễn Mậu Hiệp</p>
+                <p class="role">Con bà: Phạm Thị Nga</p>
+                <button class="gift-btn" onclick="openModal('groom')">💝 Mừng cưới</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="countdown">
+        <h2 class="section-title" style="color: white;">Đếm ngược đến ngày trọng đại</h2>
+        <div class="countdown-timer">
+            <div class="countdown-item">
+                <span class="number" id="days">00</span>
+                <span class="label">Ngày</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="hours">00</span>
+                <span class="label">Giờ</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="minutes">00</span>
+                <span class="label">Phút</span>
+            </div>
+            <div class="countdown-item">
+                <span class="number" id="seconds">00</span>
+                <span class="label">Giây</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="events">
+        <h2 class="section-title">Thông tin sự kiện</h2>
+        <div class="event-list">
+            <div class="event-item">
+                <h3>🎉 Tiệc cưới</h3>
+                <p class="time">⏰ 17:00 | 📅 01/12/2025</p>
+                <p>📍 Địa chỉ: <a href="https://maps.app.goo.gl/aMh14Dx6v7PJjEwSA">Khu Sinh Thái Vườn Xuân, Kênh Giữa, Kim Chung, Đông Anh, Hà Nội</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <h2 class="section-title">Album ảnh cưới</h2>
+        <div class="photo-grid">
+            <div class="photo-item" onclick="openLightbox(0)">
+                <img src="Images/anhcuoi1.jpg" alt="Ảnh cưới 1" loading="lazy">
+            </div>
+            <div class="photo-item" onclick="openLightbox(1)">
+                <img src="Images/anhcuoi2.jpg" alt="Ảnh cưới 2" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section class="rsvp">
+        <h2 class="section-title">Xác nhận tham dự</h2>
+        
+        <div class="rsvp-form">
+            <div class="success-message" id="successMessage">
+                ✓ Cảm ơn bạn đã xác nhận! Chúng tôi rất vui được đón tiếp bạn.
+            </div>
+            
+            <form id="rsvpForm">
+                <div class="form-group">
+                    <label for="guestName">Họ và tên *</label>
+                    <input type="text" id="guestName" name="guestName" required placeholder="Nhập họ tên của bạn">
+                </div>
+                
+                <div class="form-group">
+                    <label for="guestPhone">Số điện thoại *</label>
+                    <input type="tel" id="guestPhone" name="guestPhone" required placeholder="Nhập số điện thoại">
+                </div>
+                
+                <div class="form-group">
+                    <label>Bạn có tham dự không? *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="attendance" value="yes" required>
+                            <span>✓ Tôi sẽ đến</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="attendance" value="no">
+                            <span>✗ Tôi không thể đến</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="guestCount">Số lượng người tham dự</label>
+                    <select id="guestCount" name="guestCount">
+                        <option value="1">1 người</option>
+                        <option value="2">2 người</option>
+                        <option value="3">3 người</option>
+                        <option value="4">4 người</option>
+                        <option value="5">5 người trở lên</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Lời chúc (không bắt buộc)</label>
+                    <textarea id="message" name="message" placeholder="Gửi lời chúc đến cô dâu chú rể..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Xác nhận tham dự</button>
+            </form>
+        </div>
+
+        <div class="thank-you-note">
+            <p class="highlight">💝 Cảm ơn bạn rất nhiều! 💝</p>
+            <p>Sự hiện diện của bạn là món quà quý giá nhất dành cho chúng tôi trong ngày trọng đại này.</p>
+            <p>Chúng tôi sẽ liên hệ với bạn trước ngày cưới để xác nhận thông tin chi tiết.</p>
+        </div>
+    </section>
+
+    <div class="footer">
+        <p>Sự hiện diện của bạn là niềm hạnh phúc lớn nhất với chúng tôi!</p>
+        <p>Hằng ♥ Hiếu</p>
+        <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">01-12-2025</p>
+    </div>
+
+    <div class="rsvp-float-btn" id="rsvpFloatBtn" onclick="scrollToRSVP()">
+        <span class="rsvp-text"></span>
+    </div>
+
+    <div class="music-control playing" id="musicControl">
+        <audio id="bgMusic" loop preload="auto">
+            <source src="https://cdn.biihappy.com/ziiweb/wedding-musics/BeautifulInWhite-ShaneFilan-524801.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Modal cho cô dâu -->
+    <div class="modal" id="brideModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('bride')">&times;</span>
+            <h2 style="color: #8b7355; margin-bottom: 20px;">Mừng cưới đến Cô dâu</h2>
+            <div class="qr-container">
+                <img src="Images/QRcodau.jpg" alt="QR Code cô dâu">
+            </div>
+            <div class="bank-info">
+                <p><strong>Ngân hàng:</strong> VPBank</p>
+                <p><strong>Số TK:</strong> 190217337</p>
+                <p><strong>Chủ TK:</strong> Nguyễn Thị Hằng</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal cho chú rể -->
+    <div class="modal" id="groomModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('groom')">&times;</span>
+            <h2 style="color: #8b7355; margin-bottom: 20px;">Mừng cưới đến Chú rể</h2>
+            <div class="qr-container">
+                <img src="Images/Qrchure.jpg" alt="QR Code chú rể">
+            </div>
+            <div class="bank-info">
+                <p><strong>Ngân hàng:</strong> Vietcombank</p>
+                <p><strong>Số TK:</strong> 9353000553</p>
+                <p><strong>Chủ TK:</strong> Nguyễn Mậu Hiếu</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox cho ảnh -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); changeLightboxImage(-1)">‹</span>
+        <img id="lightbox-img" src="" alt="Ảnh phóng to">
+        <span class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); changeLightboxImage(1)">›</span>
+    </div>
+
+    <script>
+        // Scroll to RSVP section
+        function scrollToRSVP() {
+            const rsvpBtn = document.getElementById('rsvpFloatBtn');
+            rsvpBtn.classList.add('hide-text');
+            
+            document.querySelector('.rsvp').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Ẩn chữ "Tham dự" khi scroll đến phần RSVP
+        window.addEventListener('scroll', () => {
+            const rsvpSection = document.querySelector('.rsvp');
+            const rsvpBtn = document.getElementById('rsvpFloatBtn');
+            
+            if (rsvpSection && rsvpBtn) {
+                const rsvpRect = rsvpSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rsvpRect.top < windowHeight && rsvpRect.bottom > 0) {
+                    rsvpBtn.classList.add('hide-text');
+                } else {
+                    rsvpBtn.classList.remove('hide-text');
+                }
+            }
+        });
+
+        // === CẤU HÌNH GOOGLE SHEETS ===
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxPju_ouya60PF_6ZSzyduBo7TzR349BQV3VVobgV2sp6QFso8LTmBOtDku81JnB8BF6w/exec';
+        
+        // Form submission
+        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Đang gửi...';
+            
+            const formData = {
+                name: document.getElementById('guestName').value,
+                phone: document.getElementById('guestPhone').value,
+                attendance: document.querySelector('input[name="attendance"]:checked').value,
+                count: document.getElementById('guestCount').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toLocaleString('vi-VN')
+            };
+            
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                document.getElementById('successMessage').classList.add('show');
+                this.reset();
+                
+                setTimeout(() => {
+                    document.getElementById('successMessage').classList.remove('show');
+                }, 5000);
+                
+                document.querySelector('.thank-you-note').scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Có lỗi xảy ra khi gửi thông tin. Vui lòng thử lại!');
+            }
+            
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Xác nhận tham dự';
+        });
+
+        // Modal functions
+        function openModal(type) {
+            const modal = document.getElementById(type === 'bride' ? 'brideModal' : 'groomModal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(type) {
+            const modal = document.getElementById(type === 'bride' ? 'brideModal' : 'groomModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Countdown timer
+        const weddingDate = new Date('2025-12-01T17:00:00').getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                document.querySelector('.countdown-timer').innerHTML = '<h2 style="font-size: 2em;">🎉 Đám cưới đang diễn ra! 🎉</h2>';
+            }
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Music control
+        const musicControl = document.getElementById('musicControl');
+        const bgMusic = document.getElementById('bgMusic');
+        bgMusic.volume = 0.5;
+        let isPlaying = false;
+        
+        function startMusic() {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicControl.classList.add('playing');
+                musicControl.classList.remove('paused');
+            }).catch(() => {
+                console.log('Autoplay blocked');
+            });
+        }
+        
+        window.addEventListener('load', () => {
+            startMusic();
+        });
+        
+        let hasInteracted = false;
+        function enableMusicOnInteraction() {
+            if (!hasInteracted && !isPlaying) {
+                startMusic();
+                hasInteracted = true;
+            }
+        }
+        
+        document.body.addEventListener('click', enableMusicOnInteraction, { once: true });
+        document.body.addEventListener('touchstart', enableMusicOnInteraction, { once: true });
+        document.body.addEventListener('scroll', enableMusicOnInteraction, { once: true });
+        
+        musicControl.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (isPlaying) {
+                bgMusic.pause();
+                musicControl.classList.remove('playing');
+                musicControl.classList.add('paused');
+            } else {
+                bgMusic.play();
+                musicControl.classList.add('playing');
+                musicControl.classList.remove('paused');
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 1s ease-out';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Lightbox functionality
+        const galleryImages = [
+            'Images/anhcuoi1.jpg',
+            'Images/anhcuoi2.jpg'
+        ];
+        
+        let currentImageIndex = 0;
+        
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = galleryImages[index];
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function changeLightboxImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = galleryImages.length - 1;
+            if (currentImageIndex >= galleryImages.length) currentImageIndex = 0;
+            
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = galleryImages[currentImageIndex];
+        }
+        
+        // Close lightbox with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeLightboxImage(-1);
+            if (e.key === 'ArrowRight') changeLightboxImage(1);
+        });
+    </script>
+</body>
