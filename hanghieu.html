@@ -82,6 +82,19 @@
             font-family: 'Quicksand', sans-serif;
         }
 
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 3em;
+            color: white;
+        }
+
         section {
             padding: 80px 20px;
             max-width: 1200px;
@@ -702,6 +715,19 @@
             }
         }
 
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
         @keyframes pulse {
             0%, 100% {
                 transform: scale(1);
@@ -889,6 +915,7 @@
             </h1>
             <div class="date">01 - 12 - 2025</div>
         </div>
+        <div class="scroll-indicator"></div>
     </div>
 
     <section class="story">
